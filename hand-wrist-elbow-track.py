@@ -6,7 +6,7 @@ import ikpy.utils.plot as plot_utils
 import numpy as np
 import matplotlib.pyplot as plt
 import serial
-
+from collections import deque
 
 # Initialize MediaPipe Pose and Hands
 mp_pose = mp.solutions.pose
@@ -27,7 +27,7 @@ def smooth_point(buffer, new_point):
     """Average last N points for smoother tracking."""
     buffer.append(np.array(new_point))
     return tuple(np.mean(buffer, axis=0).astype(int))
-# -----------------------------------------------------
+# -----------------------------------------------------       
 
 # Initialize webcam
 cap = cv2.VideoCapture(0)
